@@ -42,12 +42,8 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<Customer> createCustomer(@RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader,
-                                                   @RequestBody Customer customer) {
-        String authResponse = isTokenValid(authHeader);
-        if(authResponse.equals("Valid"))
-            return ResponseEntity.ok(service.createCustomer(customer));
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
+        return ResponseEntity.ok(service.createCustomer(customer));
     }
 
     @GetMapping
